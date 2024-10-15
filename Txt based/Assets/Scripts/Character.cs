@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class Characters : MonoBehaviour
+[System.Serializable]
+public class Character : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public string name;
+    public string gender;
+    public int age;
+    public int health;
+    public int happiness;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Character(string name, string gender, int age){
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.health = 100; //nilai default
+        this.happiness = 100; //nilai default
+
+
     }
 }
