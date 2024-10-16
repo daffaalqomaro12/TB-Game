@@ -4,40 +4,62 @@ using TMPro;
 
 public class YearManager : MonoBehaviour
 {
-    public TMP_Text yearEvent;
-    public TMP_Text yearCount;
-    public TMP_Text ageCount;
-    public Button nextYear;
+    public Transform content;        // Content dari ScrollView
+    public GameObject eventPrefab;   // Prefab untuk setiap event log
+    public TMP_Text yearCount;       // Teks tahun saat ini
+    public TMP_Text ageCount;        // Teks umur
+    public Button nextYear;          // Tombol untuk tahun berikutnya
+    public ScrollRect scrollRect;    // ScrollRect untuk log event
 
     private int age;
     private int currentYear = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        age = PlayerPrefs.GetInt("playerAge");
-        UpdateUI();
+        // Ambil umur dari PlayerPrefs
+        age = PlayerPrefs.GetInt("playerAge", 18); // Default umur jika tidak ada data
 
+        UpdateUI();
         nextYear.onClick.AddListener(AdvanceYear);
-        
     }
 
-    // Update is called once per frame
     void AdvanceYear()
     {
         age++;
         currentYear++;
-        string randomEvent = GetRandomEvent();
-        yearEvent.text = $"Tahun {currentYear}: {randomEvent}";
+        string newEvent = $"Tahun {currentYear}: {GetRandomEvent()}";
+
+        // Tambahkan event baru ke log
+        AddEventToLog(newEvent);
+
+        // Scroll otomatis ke bawah agar event terbaru terlihat
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 0f;
 
         UpdateUI();
     }
 
-    void UpdateUI(){
+    void AddEventToLog(string eventText)
+    {
+        // Instansiasi prefab dan tambahkan ke Content
+        GameObject newEvent = Instantiate(eventPrefab, content);
+
+        // Set teks pada prefab
+        TMP_Text eventTMP = newEvent.GetComponent<TMP_Text>();
+        eventTMP.text = eventText;
+
+        // Pastikan event baru muncul di bawah (atur sebagai child terakhir)
+        newEvent.transform.SetAsLastSibling();
+    }
+
+    void UpdateUI()
+    {
         yearCount.text = $"Tahun: {currentYear}";
         ageCount.text = $"Umur: {age}";
     }
 
-    string GetRandomEvent(){
+    string GetRandomEvent()
+    {
         string[] events = {
             "Kamu lulus sekolah!",
             "Kamu mendapat pekerjaan baru!",
@@ -48,6 +70,5 @@ public class YearManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, events.Length);
         return events[randomIndex];
-
     }
 }
