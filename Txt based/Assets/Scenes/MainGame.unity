@@ -152,8 +152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -312, y: -440}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 6.1206, y: -440}
+  m_SizeDelta: {x: 836.24, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &137021146
 MonoBehaviour:
@@ -2252,6 +2252,7 @@ GameObject:
   - component: {fileID: 2001179047}
   - component: {fileID: 2001179046}
   - component: {fileID: 2001179048}
+  - component: {fileID: 2001179049}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -2342,6 +2343,22 @@ MonoBehaviour:
   nameText: {fileID: 201034411}
   genderText: {fileID: 2030518355}
   ageText: {fileID: 1218578476}
+--- !u!114 &2001179049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001179044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa47cfd994ba4e4d8790a7e56ea4075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yearEvent: {fileID: 137021146}
+  yearCount: {fileID: 862649444}
+  ageCount: {fileID: 1218578476}
+  nextYear: {fileID: 734374571}
 --- !u!1 &2030518353
 GameObject:
   m_ObjectHideFlags: 0
