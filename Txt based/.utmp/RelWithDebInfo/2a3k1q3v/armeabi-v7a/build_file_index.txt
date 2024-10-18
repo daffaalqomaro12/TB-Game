@@ -1,0 +1,3 @@
+E:\Program FIles\github\TB-Game\Txt based\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+E:\Program FIles\github\TB-Game\Txt based\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
+E:\Program FIles\github\TB-Game\Txt based\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
