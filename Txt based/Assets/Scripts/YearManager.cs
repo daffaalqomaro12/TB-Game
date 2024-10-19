@@ -28,7 +28,7 @@ public class YearManager : MonoBehaviour
     {
         age++;
         currentYear++;
-        string randomEvent = GetRandomEvent();
+        string randomEvent = eventCheck();
         string newEventText = $"Tahun {currentYear}: {randomEvent} ";
 
         AddEventToLog(newEventText);
@@ -54,17 +54,43 @@ public class YearManager : MonoBehaviour
         ageCount.text = $"Umur: {age}";
     }
 
-    string GetRandomEvent(){
-        string[] events = {
-            "Kamu lulus sekolah!",
-            "Kamu mendapat pekerjaan baru!",
-            "Kamu bertemu teman baru.",
-            "Kamu sakit tapi sembuh.",
-            "Tidak ada peristiwa besar tahun ini."
-        };
+    private string eventCheck(){
+        if (age < 6){
+            string[] events = {
+            "Tidak ada peristiwa besar tahun ini.",
+            "Kamu belajar jalan."
+            };
+            return PickRandomEvent(events);
+        }else if(age >= 6 && age < 18){
+            string[] events = {
+            "Kamu masuk sekolah sihir.",
+            "Kamu mbertemu naga di tahun ini."
+            };
+            return PickRandomEvent(events);
+        }else if (age >= 18 && age < 30)
+        {
+            string[] events = { 
+                "Kamu lulus sekolah menengah.", 
+                "Kamu mendapat pekerjaan pertama.", 
+                "Kamu mulai kuliah."
+            };
+            return PickRandomEvent(events);
+        }else
+        {
+            string[] events = { 
+                "Tidak ada peristiwa penting tahun ini.", 
+                "Kamu mendapatkan promosi kerja.",
+                "Kamu berlibur ke luar negeri."
+            };
+            return PickRandomEvent(events);
+        }
+    }
 
-        int randomIndex = Random.Range(0, events.Length);
-        return events[randomIndex];
+    private string PickRandomEvent(string[] events)
+    {
+        int randomIndex = Random.Range(0, events.Length); 
+        return events[randomIndex];  
 
+    
     }
 }
