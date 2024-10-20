@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class YearManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class YearManager : MonoBehaviour
     public Button nextYear;
     public ScrollRect scrollRect;
     public Transform content;
+    private HashSet<string> triggeredEvents = new HashSet<string>();
 
     private int age;
     private int currentYear = 0;
@@ -57,24 +59,30 @@ public class YearManager : MonoBehaviour
     private string eventCheck(){
         if (age < 6){
             string[] events = {
-            "Tidak ada peristiwa besar tahun ini.",
-            "Kamu belajar jalan."
-            };
-            return PickRandomEvent(events);
+            "Tidak ada peristiwa penting tahun ini.",
+            "Kamu belajar jalan.",
+            "Kamu diajak berkeliling kota,",
+            "Kamu mulai membaca buku.",
+            "Kamu melihat peri pertama kalinya."
+            };return GetUniqueEvent(events);
         }else if(age >= 6 && age < 18){
             string[] events = {
-            "Kamu masuk sekolah sihir.",
-            "Kamu mbertemu naga di tahun ini."
-            };
-            return PickRandomEvent(events);
+            "kamu menemukan sebuah benda aneh.",
+            "Kamu bertemu naga di tahun ini.",
+            "kamu mengikuti event yang dihadirkan tahun ini.",
+            "Tidak ada peristiwa penting tahun ini.",
+            "Kamu melihat peri pertama kalinya."
+            };return GetUniqueEvent(events);
         }else if (age >= 18 && age < 30)
         {
             string[] events = { 
                 "Kamu lulus sekolah menengah.", 
                 "Kamu mendapat pekerjaan pertama.", 
-                "Kamu mulai kuliah."
-            };
-            return PickRandomEvent(events);
+                "Kamu mulai kuliah.",
+                "kamu mengikuti event yang dihadirkan tahun ini.",
+                "Tidak ada peristiwa penting tahun ini.",
+                "Kamu melihat peri pertama kalinya."
+            };return GetUniqueEvent(events);
         }else
         {
             string[] events = { 
@@ -82,15 +90,37 @@ public class YearManager : MonoBehaviour
                 "Kamu mendapatkan promosi kerja.",
                 "Kamu berlibur ke luar negeri."
             };
-            return PickRandomEvent(events);
+            return GetUniqueEvent(events);
         }
+    }
+
+    private string GetUniqueEvent(string[] events)
+    {
+        string selectedEvent;
+
+        // Loop hingga menemukan event yang belum pernah terjadi
+        do
+        {
+            selectedEvent = PickRandomEvent(events);
+        } while (IsEventTriggered(selectedEvent) && selectedEvent == "Kamu melihat peri pertama kalinya.");
+
+        MarkEventAsTriggered(selectedEvent);
+        return selectedEvent;
     }
 
     private string PickRandomEvent(string[] events)
     {
-        int randomIndex = Random.Range(0, events.Length); 
+        int randomIndex = UnityEngine.Random.Range(0, events.Length); 
         return events[randomIndex];  
-
+    }
     
+    private bool IsEventTriggered(string eventName)
+    {
+        return triggeredEvents.Contains(eventName); // Cek apakah event sudah pernah terjadi
+    }
+
+    private void MarkEventAsTriggered(string eventName)
+    {
+        triggeredEvents.Add(eventName); // Tandai event sebagai sudah terjadi
     }
 }
