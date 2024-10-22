@@ -20,9 +20,9 @@ public class CharacterCreation : MonoBehaviour
     }
 
     void CreateCharacter(){
-        PlayerPrefs.SetString("playerName", nameInput.text);
-        PlayerPrefs.SetString("playerGender", genderDropdown.options[genderDropdown.value].text);
-        PlayerPrefs.SetInt("playerAge", (int)ageSlider.value);
+        PlayerPrefs.SetString("name", nameInput.text);
+        PlayerPrefs.SetString("gender", genderDropdown.options[genderDropdown.value].text);
+        PlayerPrefs.SetInt("age", (int)ageSlider.value);
     }
 
     void UpdateSliderValue(float value){

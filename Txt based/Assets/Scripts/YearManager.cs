@@ -12,6 +12,7 @@ public class YearManager : MonoBehaviour
     public ScrollRect scrollRect;
     public Transform content;
     private HashSet<string> triggeredEvents = new HashSet<string>();
+    
 
     private int age;
     private int currentYear = 0;
@@ -62,16 +63,15 @@ public class YearManager : MonoBehaviour
             "Tidak ada peristiwa penting tahun ini.",
             "Kamu belajar jalan.",
             "Kamu diajak berkeliling kota,",
-            "Kamu mulai membaca buku.",
-            "Kamu melihat peri pertama kalinya."
+            "Kamu mulai membaca buku dunia."
             };return GetUniqueEvent(events);
         }else if(age >= 6 && age < 18){
             string[] events = {
             "kamu menemukan sebuah benda aneh.",
             "Kamu bertemu naga di tahun ini.",
-            "kamu mengikuti event yang dihadirkan tahun ini.",
+            "kamu mengikuti event yang dihadirkan.",
             "Tidak ada peristiwa penting tahun ini.",
-            "Kamu melihat peri pertama kalinya."
+            "Kamu mulai membaca buku dunia."
             };return GetUniqueEvent(events);
         }else if (age >= 18 && age < 30)
         {
@@ -79,9 +79,9 @@ public class YearManager : MonoBehaviour
                 "Kamu lulus sekolah menengah.", 
                 "Kamu mendapat pekerjaan pertama.", 
                 "Kamu mulai kuliah.",
-                "kamu mengikuti event yang dihadirkan tahun ini.",
+                "kamu mengikuti event yang dihadirkan.",
                 "Tidak ada peristiwa penting tahun ini.",
-                "Kamu melihat peri pertama kalinya."
+                "Kamu mulai membaca buku dunia."
             };return GetUniqueEvent(events);
         }else
         {
@@ -94,17 +94,35 @@ public class YearManager : MonoBehaviour
         }
     }
 
+    private List<string> uniqueEvents = new List<string> {
+    "Kamu melihat peri pertama kalinya.",
+    "Kamu bertemu naga di tahun ini."
+    };
+
     private string GetUniqueEvent(string[] events)
     {
-        string selectedEvent;
+        List<string> validEvents = new List<string>(events);
 
-        // Loop hingga menemukan event yang belum pernah terjadi
-        do
+        foreach (string uniqueEvent in uniqueEvents)
+    {
+        if (!triggeredEvents.Contains(uniqueEvent))
         {
-            selectedEvent = PickRandomEvent(events);
-        } while (IsEventTriggered(selectedEvent) && selectedEvent == "Kamu melihat peri pertama kalinya.");
+            validEvents.Add(uniqueEvent);
+        }
+    }
+         if (validEvents.Count == 0)
+        {
+            return "Tidak ada peristiwa penting tahun ini.";
+        }
 
+        string selectedEvent = PickRandomEvent(validEvents.ToArray());
+
+    // Tandai jika event unik telah terjadi
+        if (uniqueEvents.Contains(selectedEvent))
+        {
         MarkEventAsTriggered(selectedEvent);
+        }
+
         return selectedEvent;
     }
 

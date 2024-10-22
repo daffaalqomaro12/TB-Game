@@ -10,8 +10,8 @@ public class DisplayCharacter : MonoBehaviour
     void Start()
     {
         // Ambil data dari PlayerPrefs dan tampilkan di UI
-        nameText.text = $"Nama: {PlayerPrefs.GetString("playerName")}";
-        genderText.text = $"Gender: {PlayerPrefs.GetString("playerGender")}";
-        ageText.text = $"Umur: {PlayerPrefs.GetInt("playerAge")}";
+        nameText.text = $"Nama: {PlayerPrefs.GetString("name")}";
+        genderText.text = $"Gender: {PlayerPrefs.GetString("gender")}";
+        ageText.text = $"Umur: {PlayerPrefs.GetInt("age")}";
     }
 }
