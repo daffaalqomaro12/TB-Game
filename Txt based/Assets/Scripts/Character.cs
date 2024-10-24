@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
     public string gender;
     public int age;
     public int health = 100;
-    public int strength = 0;
+    private int strength;
     public int intelligence = 0;
     public int agility = 0;
 
@@ -18,7 +18,14 @@ public class Character : MonoBehaviour
         
     }
 
-    public int GetStrength() => strength;
+    public void IncreaseStrength(int value)
+    {
+        strength += value;
+    }
+
+    public int GetStrength(){
+        return strength;
+    }
     public int GetIntelligence() => intelligence;
     public int GetAgility() => agility;
     public int GetHealth() => health;

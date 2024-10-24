@@ -12,6 +12,7 @@ public class YearManager : MonoBehaviour
     public ScrollRect scrollRect;
     public Transform content;
     private HashSet<string> triggeredEvents = new HashSet<string>();
+    private Character statsPlayer;
     
 
     private int age;
@@ -19,6 +20,7 @@ public class YearManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        statsPlayer = GetComponent<Character>();
         age = PlayerPrefs.GetInt("playerAge");
         UpdateUI();
 
@@ -31,6 +33,9 @@ public class YearManager : MonoBehaviour
     {
         age++;
         currentYear++;
+        statsPlayer.IncreaseStrength(2);
+         Debug.Log($"Strength: {statsPlayer.GetStrength()}");
+        
         string randomEvent = eventCheck();
         string newEventText = $"Tahun {currentYear}: {randomEvent} ";
 
@@ -134,11 +139,10 @@ public class YearManager : MonoBehaviour
     
     private bool IsEventTriggered(string eventName)
     {
-        return triggeredEvents.Contains(eventName); // Cek apakah event sudah pernah terjadi
+        return triggeredEvents.Contains(eventName); 
     }
-
     private void MarkEventAsTriggered(string eventName)
     {
-        triggeredEvents.Add(eventName); // Tandai event sebagai sudah terjadi
+        triggeredEvents.Add(eventName); 
     }
 }

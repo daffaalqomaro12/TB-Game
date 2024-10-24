@@ -16,19 +16,16 @@ public class StatsScripts : MonoBehaviour
 
         playerCharacter = GetComponent<Character>();
 
-        strText.text = $"STR: {playerCharacter.GetStrength()}";
-        intText.text = $"INT: {playerCharacter.GetIntelligence()}";
-        agiText.text = $"AGI: {playerCharacter.GetAgility()}";   
-        healthText.text = $"Health: {playerCharacter.GetHealth()}";  
-        
-
-
-
+    
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        strText.text = $"STR: {playerCharacter.GetStrength()}";
+        intText.text = $"INT: {playerCharacter.GetIntelligence()}";
+        agiText.text = $"AGI: {playerCharacter.GetAgility()}";   
+        healthText.text = $"Health: {playerCharacter.GetHealth()}";  
     }
 }
