@@ -18,15 +18,21 @@ public class Character : MonoBehaviour
         
     }
 
-    public void IncreaseStrength(int value)
+    public void IncreaseStats(int value)
     {
         strength += value;
+        intelligence += value;
+        agility += value;
     }
 
     public int GetStrength(){
         return strength;
     }
-    public int GetIntelligence() => intelligence;
-    public int GetAgility() => agility;
+    public int GetIntelligence(){
+        return intelligence;
+    }
+    public int GetAgility(){
+        return agility;
+    }
     public int GetHealth() => health;
 }

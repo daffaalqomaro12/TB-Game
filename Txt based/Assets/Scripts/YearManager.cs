@@ -16,6 +16,7 @@ public class YearManager : MonoBehaviour
     
 
     private int age;
+    private int currentAge;
     private int currentYear = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,13 +29,12 @@ public class YearManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void AdvanceYear()
     {
         age++;
         currentYear++;
-        statsPlayer.IncreaseStrength(2);
-         Debug.Log($"Strength: {statsPlayer.GetStrength()}");
+        statsPlayer.IncreaseStats(2);
+        Debug.Log($"Strength: {statsPlayer.GetStrength()}");
         
         string randomEvent = eventCheck();
         string newEventText = $"Tahun {currentYear}: {randomEvent} ";
@@ -44,6 +44,10 @@ public class YearManager : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 0f;
 
         UpdateUI();
+    }
+
+    void AgeUpdate(){
+        PlayerPrefs.SetInt("currentAge", (int)age);
     }
 
 
