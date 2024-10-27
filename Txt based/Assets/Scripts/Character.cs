@@ -18,12 +18,29 @@ public class Character : MonoBehaviour
         
     }
 
+    public void StrTrain(int value)
+    {
+        strength += value;
+    }
+
+    public void INTTrain(int value)
+    {
+        intelligence += value;
+    }
+
+    public void AGITrain(int value)
+    {
+        agility += value;
+    }
+
     public void IncreaseStats(int value)
     {
         strength += value;
         intelligence += value;
         agility += value;
     }
+
+    
 
     public int GetStrength(){
         return strength;

@@ -9,6 +9,9 @@ public class YearManager : MonoBehaviour
     public TMP_Text yearCount;
     public TMP_Text ageCount;
     public Button nextYear;
+    public Button trainSTR;
+    public Button trainINT;
+    public Button trainAGI;
     public ScrollRect scrollRect;
     public Transform content;
     public GameObject buttonTrain;
@@ -16,17 +19,22 @@ public class YearManager : MonoBehaviour
     private Character statsPlayer;
     
     
-
+    
+    private int trainPoint = 10;
     private int age;
     private int currentAge;
     private int currentYear = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         statsPlayer = GetComponent<Character>();
         age = PlayerPrefs.GetInt("playerAge");
         UpdateUI();
         nextYear.onClick.AddListener(AdvanceYear);
+        trainSTR.onClick.AddListener(TrainingSTR);
+        trainINT.onClick.AddListener(TrainingINT);
+        trainAGI.onClick.AddListener(TrainingAGI);
+        
         
     }
 
@@ -34,6 +42,7 @@ public class YearManager : MonoBehaviour
     {
         age++;
         currentYear++;
+        trainPoint = 10;
         statsPlayer.IncreaseStats(2);
         Debug.Log($"Strength: {statsPlayer.GetStrength()}");
         
@@ -45,7 +54,7 @@ public class YearManager : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 0f;
 
         UpdateUI();
-        Training();
+        TrainingFeature();
     }
 
 
@@ -148,7 +157,7 @@ public class YearManager : MonoBehaviour
         triggeredEvents.Add(eventName); 
     }
 
-    void Training()
+    void TrainingFeature()
     {
         if (age < 6){
             buttonTrain.gameObject.SetActive(false);
@@ -157,7 +166,35 @@ public class YearManager : MonoBehaviour
             buttonTrain.gameObject.SetActive(true);
             Debug.Log("Ada");
         }
+    }
 
-        
+    void TrainingSTR(){
+        if(trainPoint != 0){
+            statsPlayer.StrTrain(1);
+            trainPoint--;
+        }else{
+            Debug.Log("Kamu kehabisan train point");
+        }
+        Debug.Log(trainPoint);
+    }
+
+    void TrainingINT(){
+        if(trainPoint != 0){
+            statsPlayer.INTTrain(1);
+            trainPoint--;
+        }else{
+            Debug.Log("Kamu kehabisan train point");
+        }
+        Debug.Log(trainPoint);
+    }
+
+    void TrainingAGI(){
+        if(trainPoint != 0){
+            statsPlayer.AGITrain(1);
+            trainPoint--;
+        }else{
+            Debug.Log("Kamu kehabisan train point");
+        }
+        Debug.Log(trainPoint);
     }
 }
