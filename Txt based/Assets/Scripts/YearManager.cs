@@ -11,8 +11,10 @@ public class YearManager : MonoBehaviour
     public Button nextYear;
     public ScrollRect scrollRect;
     public Transform content;
+    public GameObject buttonTrain;
     private HashSet<string> triggeredEvents = new HashSet<string>();
     private Character statsPlayer;
+    
     
 
     private int age;
@@ -24,7 +26,6 @@ public class YearManager : MonoBehaviour
         statsPlayer = GetComponent<Character>();
         age = PlayerPrefs.GetInt("playerAge");
         UpdateUI();
-
         nextYear.onClick.AddListener(AdvanceYear);
         
     }
@@ -44,10 +45,7 @@ public class YearManager : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 0f;
 
         UpdateUI();
-    }
-
-    void AgeUpdate(){
-        PlayerPrefs.SetInt("currentAge", (int)age);
+        Training();
     }
 
 
@@ -148,5 +146,18 @@ public class YearManager : MonoBehaviour
     private void MarkEventAsTriggered(string eventName)
     {
         triggeredEvents.Add(eventName); 
+    }
+
+    void Training()
+    {
+        if (age < 6){
+            buttonTrain.gameObject.SetActive(false);
+            Debug.Log("Mati");
+        }else if(age >= 6 ){
+            buttonTrain.gameObject.SetActive(true);
+            Debug.Log("Ada");
+        }
+
+        
     }
 }
