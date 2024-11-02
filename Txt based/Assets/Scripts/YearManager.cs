@@ -53,8 +53,13 @@ public class YearManager : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         scrollRect.verticalNormalizedPosition = 0f;
 
+        if(randomEvent == "Kamu bertemu naga di tahun ini."){
+            Debug.Log("Rare evemt");
+        }
+
         UpdateUI();
         TrainingFeature();
+        Battle();
     }
 
 
@@ -197,4 +202,11 @@ public class YearManager : MonoBehaviour
         }
         Debug.Log(trainPoint);
     }
+
+    void Battle(){
+        if( = "Kamu bertemu naga di tahun ini."){
+            Debug.Log("Rare evemt");
+        }
+    }
 }
+
