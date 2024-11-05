@@ -54,12 +54,12 @@ public class YearManager : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 0f;
 
         if(randomEvent == "Kamu bertemu naga di tahun ini."){
-            Debug.Log("Rare evemt");
+            Battle();
         }
 
         UpdateUI();
         TrainingFeature();
-        Battle();
+        
     }
 
 
@@ -204,9 +204,8 @@ public class YearManager : MonoBehaviour
     }
 
     void Battle(){
-        if( = "Kamu bertemu naga di tahun ini."){
-            Debug.Log("Rare evemt");
-        }
+        
     }
+   
 }
 
