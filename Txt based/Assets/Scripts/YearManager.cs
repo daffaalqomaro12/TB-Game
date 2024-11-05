@@ -34,8 +34,6 @@ public class YearManager : MonoBehaviour
         trainSTR.onClick.AddListener(TrainingSTR);
         trainINT.onClick.AddListener(TrainingINT);
         trainAGI.onClick.AddListener(TrainingAGI);
-        
-        
     }
 
     void AdvanceYear()
@@ -48,6 +46,7 @@ public class YearManager : MonoBehaviour
         
         string randomEvent = eventCheck();
         string newEventText = $"Tahun {currentYear}: {randomEvent} ";
+        
 
         AddEventToLog(newEventText);
         Canvas.ForceUpdateCanvases();
@@ -59,7 +58,6 @@ public class YearManager : MonoBehaviour
 
         UpdateUI();
         TrainingFeature();
-        
     }
 
 
@@ -177,8 +175,11 @@ public class YearManager : MonoBehaviour
         if(trainPoint != 0){
             statsPlayer.StrTrain(1);
             trainPoint--;
+            string trainingText = $"STR +1, training point {trainPoint}";
+            AddEventToLog(trainingText);
         }else{
-            Debug.Log("Kamu kehabisan train point");
+            string trainingText = "Kamu kehabisan train point";
+            AddEventToLog(trainingText);
         }
         Debug.Log(trainPoint);
     }
@@ -187,8 +188,11 @@ public class YearManager : MonoBehaviour
         if(trainPoint != 0){
             statsPlayer.INTTrain(1);
             trainPoint--;
+            string trainingText = $"INT +1, training point {trainPoint}";
+            AddEventToLog(trainingText);
         }else{
-            Debug.Log("Kamu kehabisan train point");
+            string trainingText = "Kamu kehabisan train point";
+            AddEventToLog(trainingText);
         }
         Debug.Log(trainPoint);
     }
@@ -197,8 +201,11 @@ public class YearManager : MonoBehaviour
         if(trainPoint != 0){
             statsPlayer.AGITrain(1);
             trainPoint--;
+            string trainingText = $"AGI +1, training point {trainPoint}";
+            AddEventToLog(trainingText);
         }else{
-            Debug.Log("Kamu kehabisan train point");
+            string trainingText = "Kamu kehabisan train point";
+            AddEventToLog(trainingText);
         }
         Debug.Log(trainPoint);
     }
