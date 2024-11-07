@@ -10,11 +10,16 @@ public class YearManager : MonoBehaviour
     public TMP_Text ageCount;
     public Button nextYear;
     public Button trainSTR;
-    public Button trainINT;
+    public Button trainINT; 
     public Button trainAGI;
     public ScrollRect scrollRect;
     public Transform content;
     public GameObject buttonTrain;
+    public GameObject deathScreen;
+    public GameObject mainScreen;
+    public GameObject Notif;
+    public Button fight;
+    public Button run;
     private HashSet<string> triggeredEvents = new HashSet<string>();
     private Character statsPlayer;
     
@@ -53,7 +58,7 @@ public class YearManager : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 0f;
 
         if(randomEvent == "Kamu bertemu naga di tahun ini."){
-            Battle();
+            NotifBattle();
         }
 
         UpdateUI();
@@ -203,6 +208,7 @@ public class YearManager : MonoBehaviour
             trainPoint--;
             string trainingText = $"AGI +1, training point {trainPoint}";
             AddEventToLog(trainingText);
+            
         }else{
             string trainingText = "Kamu kehabisan train point";
             AddEventToLog(trainingText);
@@ -210,9 +216,30 @@ public class YearManager : MonoBehaviour
         Debug.Log(trainPoint);
     }
 
-    void Battle(){
-        
+    void NotifBattle(){
+        Notif.gameObject.SetActive(true);
+        fight.onClick.AddListener(Battle);
+        run.onClick.AddListener(Run);
     }
    
+    
+    void Death(){
+        deathScreen.gameObject.SetActive(true);
+        mainScreen.gameObject.SetActive(false);
+    }
+
+    void Battle(){
+        int currentSTR = statsPlayer.GetStrength();
+        string randomEvent = eventCheck();
+        if(randomEvent == "Kamu bertemu naga di tahun ini."){
+            if(currentSTR < 50){
+                Death();
+            }
+        }
+    }
+
+    void Run(){
+
+    }
 }
 
