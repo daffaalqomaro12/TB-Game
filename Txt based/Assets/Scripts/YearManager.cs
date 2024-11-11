@@ -230,10 +230,15 @@ public class YearManager : MonoBehaviour
 
     void Battle(){
         int currentSTR = statsPlayer.GetStrength();
+        int currentAGI = statsPlayer.GetAgility();
+        int currentINT = statsPlayer.GetIntelligence();
         string randomEvent = eventCheck();
         if(randomEvent == "Kamu bertemu naga di tahun ini."){
-            if(currentSTR < 50){
+            if(currentSTR < 50 && currentAGI < 50 && currentINT < 50){
                 Death();
+            }else{
+                string trainingText = "Kamu berhasil mengalahkan monster";
+                AddEventToLog(trainingText);
             }
         }
     }
